@@ -5,8 +5,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import versionOne.srcd.util.RouterUtils;
 
-import java.nio.charset.Charset;
-
 public class MyFirstHostChannelHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -21,7 +19,7 @@ public class MyFirstHostChannelHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf byteBuf = (ByteBuf) msg;
         System.out.println("<Host:>Read");
-        System.out.println(byteBuf.toString(Charset.forName("utf-8")));
+        System.out.println(byteBuf.toString(RouterUtils.charset));
     }
 
     public ByteBuf getByteBuf(ChannelHandlerContext ctx) {
