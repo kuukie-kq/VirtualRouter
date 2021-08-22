@@ -99,27 +99,21 @@ public class RouterTableDao {
          * 插入一条新的路由表信息
          * 用于在没有目标地址时,更新路由表
          */
-        String prepareSql = "select count(*) from db_router_table";
+        String prepareSql = "select count(*) as count from db_router_table";
         int number = -1;
         try {
             MysqlConnectUtils.mysqlInit();
-            MysqlConnectUtils.mysqlUpdate(prepareSql);
+            MysqlConnectUtils.mysqlSelect(prepareSql);
             ResultSet rs = MysqlConnectUtils.getRs();
             for(;rs.next();) {
-                number = rs.getInt(1);
+                number = rs.getInt("count");
             }
-            MysqlConnectUtils.mysqlClose();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         number++;
-
         String sql = "insert into db_router_table values(" + number +
                 ",'" + routerTable.getTableName() +"'," + routerTable.getRouterId() +
                 ",'" + routerTable.getReachableAddressName() + "'," +
                 routerTable.getReachableDistance() + ",'" + routerTable.getNextAddressName() + "')";
-        try {
-            MysqlConnectUtils.mysqlInit();
+
             MysqlConnectUtils.mysqlUpdate(sql);
             MysqlConnectUtils.mysqlClose();
         } catch (Exception e) {

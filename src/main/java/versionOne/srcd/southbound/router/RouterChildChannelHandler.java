@@ -15,6 +15,11 @@ public class RouterChildChannelHandler extends ChannelInitializer<SocketChannel>
 //        socketChannel.pipeline().addLast(new MySocketServerHandler());
 //        socketChannel.pipeline().addLast(new MyWebSocketServerHandler());
 
-        socketChannel.pipeline().addLast(new TestTwo());
+//        socketChannel.pipeline().addLast(new TestTwo());
+        socketChannel.pipeline().addLast(new AnalyzeCustomProtocols());
+        socketChannel.pipeline().addLast(new LookingForNext());
+        socketChannel.pipeline().addLast(new LookingForRouterLazyLoading());
+        socketChannel.pipeline().addLast(new RoutingTableUpdate());
+        socketChannel.pipeline().addLast(new EndOfCycleAndForwarding());
     }
 }

@@ -14,7 +14,7 @@ public class MysqlConnectUtils {
     //建立MySQL连接
     public static void mysqlInit() throws Exception {
         Class.forName(DRIVER);
-        System.out.println("Connecting to a selected database...");
+        //System.out.println("Connecting to a selected database...");
         conn= DriverManager.getConnection(DB,USER,PASSWORD);
         stmt=conn.createStatement();
     }
@@ -27,7 +27,7 @@ public class MysqlConnectUtils {
             stmt.close();
         if(conn!=null)
             conn.close();
-        System.out.println("Closing the selected database...");
+        //System.out.println("Closing the selected database...");
     }
 
     //添加
