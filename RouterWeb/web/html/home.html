@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分析页</title>
+    <link type="text/css" rel="stylesheet" href="../css/kokoui.css" />
+    <style type="text/css">
+        .koko-home {
+            min-width: 800px;
+            min-height: 480px;
+            width: 100%;
+            height: 100%;
+        }
+        .koko-home-head {
+            min-width: 400px;
+            min-height: 120px;
+            width: 50%;
+            height: 25%;
+            float: left;
+        }
+        .koko-home-body {
+            min-width: 640px;
+            min-height: 312px;
+            width: 80%;
+            height: 65%;
+        }
+        .koko-home-body-body {
+            min-width: 576px;
+            min-height: 252px;
+            width: 90%;
+            height: 75%;
+            margin: 5% 0px 0px 0px;
+            background: #CFFFF0;
+        }
+        .koko-home-head-body {
+            min-width: 320px;
+            min-height: 96px;
+            width: 80%;
+            height: 80%;
+            margin: 5% 0px 0px 10%;
+            background: #CFFFF0;
+        }
+        .koko-home-head-message {
+            margin: 10px 50px;
+        }
+        .koko-home-head-message p{
+            font-size: xx-large;
+            color: #52c41a;
+        }
+    </style>
+</head>
+<body>
+    <div class="koko-home">
+        <div class="koko-home-head">
+            <div class="koko-home-head-body">
+                <div class="koko-home-head-message">
+                    主机总数
+                    <p id="hostNumber">4</p>
+                </div>
+            </div>
+        </div>
+        <div class="koko-home-head">
+            <div class="koko-home-head-body">
+                <div class="koko-home-head-message">
+                    虚拟路由器总数
+                    <p id="routerNumber">4</p>
+                </div>
+            </div>
+        </div>
+        <div class="koko-clear-float"></div>
+        <div class="koko-home-body">
+            <div class="koko-home-body-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="4">
+                                <input type="button" value="前">
+                                <input type="text" value="1" style="width: 20px">/<span>1</span>
+                                <input type="button" value="后">
+                                共<span>4</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>主机</td>
+                            <td></td>
+                            <td>路由器</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>host1</td>
+                            <td>----</td>
+                            <td>router1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>host2</td>
+                            <td>----</td>
+                            <td>router2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>host3</td>
+                            <td>----</td>
+                            <td>router3</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>host4</td>
+                            <td>----</td>
+                            <td>router4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
