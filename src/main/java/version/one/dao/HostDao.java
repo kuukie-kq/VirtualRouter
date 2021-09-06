@@ -50,7 +50,26 @@ public class HostDao {
         }
     }
 
-    public void lookHost() {
-
+    public int lookupHostGetHostsNumber() {
+        List<Host> hosts = new ArrayList();
+        String sql = "select * from db_host";
+        int i = 0;
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlSelect(sql);
+            ResultSet rs = MysqlConnectUtils.getRs();
+            for(;rs.next();i++) {
+                Host host = new Host();
+                host.setHostId(rs.getInt(1));
+                host.setHostName(rs.getString(2));
+                host.setHostAddress(rs.getString(3));
+                hosts.add(host);
+            }
+            MysqlConnectUtils.mysqlClose();
+            return i;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }

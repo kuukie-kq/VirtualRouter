@@ -70,7 +70,26 @@ public class RouterDao{
         }
     }
 
-    public void lookRouter() {
-
+    public int lookupRouterGetRoutersNumber() {
+        List<Router> routers = new ArrayList();
+        String sql = "select * from db_router";
+        int i = 0;
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlSelect(sql);
+            ResultSet rs = MysqlConnectUtils.getRs();
+            for(;rs.next();i++) {
+                Router router = new Router();
+                router.setRouterId(rs.getInt(1));
+                router.setRouterName(rs.getString(2));
+                router.setRouterAddress(rs.getString(3));
+                routers.add(router);
+            }
+            MysqlConnectUtils.mysqlClose();
+            return i;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }

@@ -115,3 +115,17 @@ body {
 .koko-ul:hover .koko-ul-li {
 	display: block;
 }
+
+.koko-ul a{
+	text-decoration: none;
+	color: black;
+}
+/*-class- 脚注信息 */
+.koko-footer-message {
+	min-width: 400px;
+	min-height: 60px;
+	width: 40%;
+	height: 100%;
+	text-align: center;
+	font-size: x-small;
+}

@@ -71,6 +71,7 @@
         { "selector": "c-player div.list-button", "text": ["<span style=\"color:#0099cc;\">播放列表</span>里都有什么呢"] },
         { "selector": "c-player div.lyric-button", "text": ["有<span style=\"color:#0099cc;\">歌词</span>的话就能跟着一起唱呢"] },
         { "selector": ".waifu #live2d", "text": ["(;´・`)>有什么事吗", "(oﾟvﾟ)ノ右侧有小工具哦(oﾟωﾟo)"] }
+
     ],
     "click": [
         {
