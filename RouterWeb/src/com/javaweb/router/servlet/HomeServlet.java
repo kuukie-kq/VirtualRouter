@@ -9,7 +9,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeServlet extends HttpServlet {
     @Override
@@ -25,5 +28,6 @@ public class HomeServlet extends HttpServlet {
         JSONArray jsonArray = JSONArray.fromObject(headMessage);
         response.setContentType("text/html;charset=utf-8");
         response.getWriter().println(jsonArray);
+        System.out.println(jsonArray);
     }
 }

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="VirtualRouter">
+    <output-path>$PROJECT_DIR$/out/artifacts/VirtualRouter</output-path>
+    <root id="root">
+      <element id="archive" name="VirtualRouter.jar">
+        <element id="module-output" name="VirtualRouter" />
+      </element>
+    </root>
+  </artifact>
+</component>

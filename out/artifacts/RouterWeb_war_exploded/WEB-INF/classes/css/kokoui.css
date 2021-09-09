@@ -115,6 +115,21 @@ body {
 .koko-ul:hover .koko-ul-li {
 	display: block;
 }
+.koko-td-tr {
+	padding: 10px 50px;
+}
+.koko-td-td {
+	color: #0e94ea;
+	font-size: 14px;
+	text-align: center;
+}
+.koko-td-th {
+	background-color: #0A4979;
+	border: 1px solid #0E94EA;
+	text-align: center;
+	color: #00B3AC;
+}
+
 
 .koko-ul a{
 	text-decoration: none;
@@ -127,5 +142,5 @@ body {
 	width: 40%;
 	height: 100%;
 	text-align: center;
-	font-size: x-small;
+	font-size: small;
 }

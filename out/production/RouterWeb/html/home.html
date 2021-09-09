@@ -61,7 +61,7 @@
                 <div class="koko-home-head-body">
                     <div class="koko-home-head-message">
                         主机总数
-                        <p id="hostNumber">4</p>
+                        <p id="hostNumber">0</p>
                     </div>
                 </div>
             </div>
@@ -69,57 +69,64 @@
                 <div class="koko-home-head-body">
                     <div class="koko-home-head-message">
                         虚拟路由器总数
-                        <p id="routerNumber">4</p>
+                        <p id="routerNumber">0</p>
                     </div>
                 </div>
             </div>
             <div class="koko-clear-float"></div>
             <div class="koko-home-body">
                 <div class="koko-home-body-body">
-                    https://www.cnblogs.com/liyihua/p/12393342.html
-                    https://www.cnblogs.com/liesun/p/9196555.html
+                    <!-- https://www.cnblogs.com/liyihua/p/12393342.html https://www.cnblogs.com/liesun/p/9196555.html -->
                     <table id="homeTable">
                         <thead>
-                        <tr>
-                            <td colspan="4">
-                                <input type="button" value="前">
-                                <input type="text" value="1" style="width: 20px">/<span>1</span>
-                                <input type="button" value="后">
-                                共<span>4</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>主机</td>
-                            <td></td>
-                            <td>路由器</td>
-                        </tr>
+                            <tr>
+                                <td colspan="4" class="koko-td-tr koko-td-td">
+                                    <input type="button" value="上一页">
+                                    <span>第</span>
+                                    <input type="text" value="1" style="width: 20px" id="pageNumber">
+                                    <span>页共</span>
+                                    <span id="pageCountNumber">1</span>
+                                    <span>页</span>
+                                    <input type="button" value="下一页">
+                                    <span>每页</span>
+                                    <span id="countPageNumber">5</span>
+                                    <span>条共</span>
+                                    <span id="countNumber">0</span>
+                                    <span>条</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="koko-td-th koko-td-tr"></td>
+                                <td class="koko-td-th koko-td-tr">主机</td>
+                                <td class="koko-td-tr koko-td-td"></td>
+                                <td class="koko-td-th koko-td-tr">路由器</td>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>host1</td>
-                            <td>----</td>
-                            <td>router1</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>host2</td>
-                            <td>----</td>
-                            <td>router2</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>host3</td>
-                            <td>----</td>
-                            <td>router3</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>host4</td>
-                            <td>----</td>
-                            <td>router4</td>
-                        </tr>
+                            <tr>
+                                <td class="koko-td-tr koko-td-td">1</td>
+                                <td class="koko-td-tr koko-td-td">host1</td>
+                                <td class="koko-td-tr koko-td-td">----</td>
+                                <td class="koko-td-tr koko-td-td">router1</td>
+                            </tr>
+                            <tr>
+                                <td class="koko-td-tr koko-td-td">2</td>
+                                <td class="koko-td-tr koko-td-td">host2</td>
+                                <td class="koko-td-tr koko-td-td">----</td>
+                                <td class="koko-td-tr koko-td-td">router2</td>
+                            </tr>
+                            <tr>
+                                <td class="koko-td-tr koko-td-td">3</td>
+                                <td class="koko-td-tr koko-td-td">host3</td>
+                                <td class="koko-td-tr koko-td-td">----</td>
+                                <td class="koko-td-tr koko-td-td">router3</td>
+                            </tr>
+                            <tr>
+                                <td class="koko-td-tr koko-td-td">4</td>
+                                <td class="koko-td-tr koko-td-td">host4</td>
+                                <td class="koko-td-tr koko-td-td">----</td>
+                                <td class="koko-td-tr koko-td-td">router4</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -134,15 +141,22 @@
                 url: "../headMessage"
             }).done(function(datas){
                 var tbodyOp = $("#homeTable tbody").empty();
-                var tbodyEd;
-                var response = JSON.parse(datas);
-                $.each(response.hostRelationshipList,function(i,data){
-                    tbodyEd = tbodyEd + "<tr><td>" + data.hostShipId +
-                        "</td><td>" + data.hostId +
-                        "</td><td>----</td><td>" + data.routerId +
-                        "</td></tr>";
+                $.each(JSON.parse(datas),function (i,dataObject) {
+                    alert($("#countPageNumber").html);
+                    $("#hostNumber").text(dataObject.hostNumber);
+                    $("#routerNumber").text(dataObject.routerNumber);
+                    $("#pageCountNumber").text(Math.ceil(dataObject.countNumber/$("#countPageNumber").text()));
+                    $("#pageNumber").text(dataObject.pageNumber);
+                    $("#countNumber").text(dataObject.countNumber);
+
+                    $.each(dataObject.hostRelationshipList,function (j,data) {
+                        var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.hostShipId +
+                            "</td><td class='koko-td-tr koko-td-td'>" + data.hostId +
+                            "</td><td class='koko-td-tr koko-td-td'>----</td><td class='koko-td-tr koko-td-td'>" +
+                            data.routerId + "</td></tr>";
+                        tbodyOp.append(tbodyEd);
+                    });
                 });
-                tbodyOp.append(tbodyEd);
             }).fail(function(){
                 console.log("连接失败");
             });
