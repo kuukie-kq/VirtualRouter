@@ -33,96 +33,65 @@
         </style>
     </head>
     <body>
-        <!-- https://echarts.apache.org/v4/examples/zh/editor.html?c=graph-simple -->
+        <!-- https://echarts.apache.org/v4/examples/zh/editor.html?c=graph-simple https://www.cnblogs.com/wheatCatcher/p/11201721.html -->
         <div class="koko-home">
             <div class="koko-home-div">
                 <div class="koko-home-head">虚拟环境一览</div>
                 <div class="koko-home-body">
                     <div id="graph" style="width: 80%;height: 90%"></div>
+                    <script src="../js/jquery-3.4.1.js"></script>
                     <script src="../js/dist/echarts.js"></script>
                     <script type="text/javascript">
-                        var chats = echarts.init(document.getElementById("graph"));
-                        var option = {
-                            title: {
-                                text: 'Graph 简单示例'
-                            },
-                            tooltip: {},
-                            animationDurationUpdate: 1500,
-                            animationEasingUpdate: 'quinticInOut',
-                            series: [
-                                {
-                                    type: 'graph',
-                                    layout: 'none',
-                                    symbolSize: 50,
-                                    roam: true,
-                                    label: {
-                                        show: true
-                                    },
-                                    edgeSymbol: ['circle', 'arrow'],
-                                    edgeSymbolSize: [4, 10],
-                                    edgeLabel: {
-                                        fontSize: 20
-                                    },
-                                    data: [{
-                                        name: '节点1',
-                                        x: 300,
-                                        y: 300
-                                    }, {
-                                        name: '节点2',
-                                        x: 800,
-                                        y: 300
-                                    }, {
-                                        name: '节点3',
-                                        x: 550,
-                                        y: 100
-                                    }, {
-                                        name: '节点4',
-                                        x: 550,
-                                        y: 500
-                                    }],
-                                    // links: [],
-                                    links: [{
-                                        source: 0,
-                                        target: 1,
-                                        symbolSize: [5, 20],
+                        $.ajax({
+                            type: "post",
+                            url: "../routerShip"
+                        }).done(function (datas) {
+                            var datasShip = new Array();
+                            var linksShip = new Array();
+                            $.each(JSON.parse(datas),function (i,data) {
+                                $.each(data.routers,function (j,router) {
+                                    datasShip.push({name: router.routerName});
+                                });
+                                $.each(data.ships,function (j,ship) {
+                                    linksShip.push({source: ship.fromNode, target: ship.toNode});
+                                });
+                            });
+
+                            var chats = echarts.init(document.getElementById("graph"));
+                            var option = {
+                                title: {
+                                    text: "路由器之间的关系图"
+                                },
+                                tooltip: {trigger: "item",formatter: "{b}"},
+                                animationDurationUpdate: 2000,
+                                animationEasingUpdate: 'quinticInOut',
+                                series: [
+                                    {
+                                        type: "graph",
+                                        layout: "circular", // 'none' 不采用任何布局，使用节点中提供的 x， y 作为节点的位置.'circular' 采用环形布局，'force' 采用力引导布局
+                                        symbolSize: 80,
+                                        roam: true,
+                                        edgeSymbol: ["diamond"],
+                                        edgeLabel: {
+                                            fontSize: 20
+                                        },
                                         label: {
                                             show: true
                                         },
+                                        data: datasShip,
+                                        links: linksShip,
                                         lineStyle: {
+                                            opacity: 0.6,
                                             width: 5,
-                                            curveness: 0.2
+                                            curveness: -0.2
                                         }
-                                    }, {
-                                        source: '节点2',
-                                        target: '节点1',
-                                        label: {
-                                            show: true
-                                        },
-                                        lineStyle: {
-                                            curveness: 0.2
-                                        }
-                                    }, {
-                                        source: '节点1',
-                                        target: '节点3'
-                                    }, {
-                                        source: '节点2',
-                                        target: '节点3'
-                                    }, {
-                                        source: '节点2',
-                                        target: '节点4'
-                                    }, {
-                                        source: '节点1',
-                                        target: '节点4'
-                                    }],
-                                    lineStyle: {
-                                        opacity: 1,
-                                        width: 2,
-                                        curveness: -1
                                     }
-                                }
-                            ]
-                        };
-                        chats.setOption(option);
+                                ]
+                            };
+                            chats.setOption(option);
+                        }).fail(function () {
+                            console.log("连接失败");
+                        });
                     </script>
                 </div>
             </div>

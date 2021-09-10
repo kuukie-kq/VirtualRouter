@@ -42,12 +42,13 @@
                 <version>2.4</version>
                 <classifier>jdk15</classifier>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.webjars.bower/echarts -->
+            <!-- https://mvnrepository.com/artifact/org.webjars.bower/echarts
             <dependency>
                 <groupId>org.webjars.bower</groupId>
                 <artifactId>echarts</artifactId>
                 <version>5.0.2</version>
             </dependency>
+            -->
         </dependencies>
 <!--    </dependencyManagement>-->
 

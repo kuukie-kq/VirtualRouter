@@ -1,7 +1,5 @@
 package com.javaweb.router.bean;
 
-import version.one.bean.Host;
-
 import java.util.List;
 
 public class HeadMessage {
