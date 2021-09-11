@@ -53,4 +53,26 @@ public class HostRelationshipDao {
             return -1;
         }
     }
+
+    public List<HostRelationship> lookupHostShipGetHostShipsByLimit(int page) {
+        List<HostRelationship> hostRelationships = new ArrayList();
+        String sql = "select * from db_host_relationship limit " + page*5 + "," + (page+1)*5;
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlSelect(sql);
+            ResultSet rs = MysqlConnectUtils.getRs();
+            for(;rs.next();) {
+                HostRelationship hostRelationship = new HostRelationship();
+                hostRelationship.setHostShipId(rs.getInt(1));
+                hostRelationship.setHostId(rs.getInt(2));
+                hostRelationship.setRouterId(rs.getInt(3));
+                hostRelationships.add(hostRelationship);
+            }
+            MysqlConnectUtils.mysqlClose();
+            return hostRelationships;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

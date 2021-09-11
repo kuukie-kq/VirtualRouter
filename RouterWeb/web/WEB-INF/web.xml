@@ -26,6 +26,13 @@
         <servlet-name>routerShipServlet</servlet-name>
         <url-pattern>/routerShip</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>homePageServlet</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.HomePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homePageServlet</servlet-name>
+        <url-pattern>/headPage</url-pattern>
+    </servlet-mapping>
 
 </web-app>

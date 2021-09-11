@@ -16,4 +16,9 @@ public class HomeService {
 
         return new HeadMessage(hostsNumber,routersNumber,1,countNumber,hostRelationshipList);
     }
+
+    public HeadMessage getMessageByLimit(int page) {
+        List<HostRelationship> hostRelationships = RouterWebUtils.hostRelationshipDao.lookupHostShipGetHostShipsByLimit(page);
+        return  new HeadMessage(0,0,page,0,hostRelationships);
+    }
 }
