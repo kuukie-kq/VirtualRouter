@@ -30,6 +30,28 @@ public class RouterDao{
         }
     }
 
+    public List<Router> lookupRouterGetRoutersByLimit(int page) {
+        List<Router> routers = new ArrayList();
+        String sql = "select * from db_router limit " + page*5 + "," + (page+1)*5;
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlSelect(sql);
+            ResultSet rs = MysqlConnectUtils.getRs();
+            for(;rs.next();) {
+                Router router = new Router();
+                router.setRouterId(rs.getInt(1));
+                router.setRouterName(rs.getString(2));
+                router.setRouterAddress(rs.getString(3));
+                routers.add(router);
+            }
+            MysqlConnectUtils.mysqlClose();
+            return routers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Router lookupRouterById(int id) {
         Router router = new Router();
         String sql = "select * from db_router where routerId=" + id;

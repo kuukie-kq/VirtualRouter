@@ -4,6 +4,7 @@ import com.javaweb.router.bean.HeadMessage;
 import com.javaweb.router.bean.RouterShip;
 import com.javaweb.router.service.HomeService;
 import com.javaweb.router.service.RouterRelationshipService;
+import com.javaweb.router.util.RouterWebUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,8 +21,7 @@ public class RouterRelationshipServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RouterRelationshipService relationshipService = new RouterRelationshipService();
-        RouterShip routerShip = relationshipService.getRouterShip();
+        RouterShip routerShip = RouterWebUtils.routerRelationshipService.getRouterShip();
 
         JSONArray jsonArray = JSONArray.fromObject(routerShip);
         response.setContentType("text/html;charset=utf-8");

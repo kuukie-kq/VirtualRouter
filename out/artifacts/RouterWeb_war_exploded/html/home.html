@@ -84,7 +84,9 @@
                                     <button id="front">上一页</button>
                                     <span>第</span>
                                     <input type="text" value="1" style="width: 20px" id="pageNumber">
-                                    <span>页共</span>
+                                    <span>页</span>
+                                    <button id="skip">跳转</button>
+                                    <span>共</span>
                                     <span id="pageCountNumber">1</span>
                                     <span>页</span>
                                     <button id="next">下一页</button>
@@ -218,6 +220,37 @@
                     console.log("连接失败");
                 });
             }
-        })
+        });
+
+        $("#skip").click(function(){
+            var pageNumber = $("#pageNumber").text();
+            var pageCountNumber = $("#pageCountNumber").text();
+            if(pageNumber <= 0 && pageNumber >= pageCountNumber) {
+                console.log("page:" + pageNumber + " It is not have the page");
+            } else {
+                $.ajax({
+                    type: "post",
+                    url: "../headPage",
+                    data: {"page": page}
+                }).done(function(datas){
+                    $.each(JSON.parse(datas),function(i,data){
+                        if(pageNumber == data.pageNumber) {
+                            $("#pageNumber").text(data.pageNumber);
+                        }
+
+                        var tbodyOp = $("#homeTable tbody").empty();
+                        $.each(data.hostRelationshipList,function (j,data) {
+                            var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.hostShipId +
+                                "</td><td class='koko-td-tr koko-td-td'>" + data.hostId +
+                                "</td><td class='koko-td-tr koko-td-td'>----</td><td class='koko-td-tr koko-td-td'>" +
+                                data.routerId + "</td></tr>";
+                            tbodyOp.append(tbodyEd);
+                        });
+                    });
+                }).fail(function(){
+                    console.log("连接失败");
+                });
+            }
+        });
     </script>
 </html>

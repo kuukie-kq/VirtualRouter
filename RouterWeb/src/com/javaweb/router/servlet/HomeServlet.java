@@ -19,8 +19,7 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HomeService homeService = new HomeService();
-        HeadMessage headMessage = homeService.getMessage();
+        HeadMessage headMessage = RouterWebUtils.homeService.getMessage();
         headMessage.setHostRelationshipList(RouterWebUtils.hostRelationshipDao.lookupHostShipGetHostShipsByLimit(0));
 
         JSONArray jsonArray = JSONArray.fromObject(headMessage);

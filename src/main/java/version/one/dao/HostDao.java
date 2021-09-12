@@ -30,6 +30,28 @@ public class HostDao {
         }
     }
 
+    public List<Host> lookupHostGetHostsByLimit(int page) {
+        List<Host> hosts = new ArrayList();
+        String sql = "select * from db_host limit " + page*5 + "," + (page+1)*5;
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlSelect(sql);
+            ResultSet rs = MysqlConnectUtils.getRs();
+            for(;rs.next();) {
+                Host host = new Host();
+                host.setHostId(rs.getInt(1));
+                host.setHostName(rs.getString(2));
+                host.setHostAddress(rs.getString(3));
+                hosts.add(host);
+            }
+            MysqlConnectUtils.mysqlClose();
+            return hosts;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Host lookupHostByName(String name) {
         Host host = new Host();
         String sql = "select * from db_host where hostName='" + name + "'";

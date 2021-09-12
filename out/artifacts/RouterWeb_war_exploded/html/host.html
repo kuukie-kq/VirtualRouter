@@ -37,48 +37,68 @@
             <div class="koko-home-div">
                 <div class="koko-home-head">虚拟网络环境:主机</div>
                 <div class="koko-home-body">
-                    <input /><br /><br />
+                    <form>
+                        <input type="text">
+                        <input type="text">
+                        <input type="text">
+                        <input type="text">
+                    </form>
                     <table id="hostTable">
                         <thead>
                             <tr>
-                                <td colspan="5">ha</td>
+                                <td colspan="5" class="koko-td-tr koko-td-td">
+                                    <button id="front">上一页</button>
+                                    <span>第</span>
+                                    <input type="text" value="1" style="width: 20px" id="pageNumber">
+                                    <span>页</span>
+                                    <button id="skip">跳转</button>
+                                    <span>共</span>
+                                    <span id="pageCountNumber">1</span>
+                                    <span>页</span>
+                                    <button id="next">下一页</button>
+                                    <span>每页</span>
+                                    <span id="countPageNumber">5</span>
+                                    <span>条共</span>
+                                    <span id="countNumber">0</span>
+                                    <span>条</span>
+                                </td>
                             </tr>
                             <tr>
-                                <td>id</td>
-                                <td>主机名</td>
-                                <td>主机地址</td>
-                                <td>关联路由器id</td>
-                                <td>操作</td>
+                                <td class="koko-td-th koko-td-tr">id</td>
+                                <td class="koko-td-th koko-td-tr">主机名</td>
+                                <td class="koko-td-th koko-td-tr">主机地址</td>
+                                <td class="koko-td-th koko-td-tr">关联路由器id</td>
+                                <td class="koko-td-th koko-td-tr">操作</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>HostOne</td>
-                                <td>127.0.0.1:55131</td>
-                                <td>1</td>
-                                <td></td>
+                                <td class="koko-td-tr koko-td-td">1</td>
+                                <td class="koko-td-tr koko-td-td">HostOne</td>
+                                <td class="koko-td-tr koko-td-td">127.0.0.1:55131</td>
+                                <td class="koko-td-tr koko-td-td">1</td>
+                                <td class="koko-td-tr koko-td-td"></td>
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>HostTwo</td>
-                                <td>127.0.0.1:55132</td>
-                                <td>2</td>
-                                <td></td>
+                                <td class="koko-td-tr koko-td-td">2</td>
+                                <td class="koko-td-tr koko-td-td">HostTwo</td>
+                                <td class="koko-td-tr koko-td-td">127.0.0.1:55132</td>
+                                <td class="koko-td-tr koko-td-td">2</td>
+                                <td class="koko-td-tr koko-td-td"></td>
                             </tr>
                             <tr>
-                                <td>3</td>
-                                <td>HostThree</td>
-                                <td>127.0.0.1:55133</td>
-                                <td>3</td>
-                                <td></td>
+                                <td class="koko-td-tr koko-td-td">3</td>
+                                <td class="koko-td-tr koko-td-td">HostThree</td>
+                                <td class="koko-td-tr koko-td-td">127.0.0.1:55133</td>
+                                <td class="koko-td-tr koko-td-td">3</td>
+                                <td class="koko-td-tr koko-td-td"></td>
                             </tr>
                             <tr>
-                                <td>4</td>
-                                <td>HostFour</td>
-                                <td>127.0.0.1:55134</td>
-                                <td>4</td>
-                                <td></td>
+                                <td class="koko-td-tr koko-td-td">4</td>
+                                <td class="koko-td-tr koko-td-td">HostFour</td>
+                                <td class="koko-td-tr koko-td-td">127.0.0.1:55134</td>
+                                <td class="koko-td-tr koko-td-td">4</td>
+                                <td class="koko-td-tr koko-td-td"></td>
                             </tr>
                         </tbody>
                     </table>
