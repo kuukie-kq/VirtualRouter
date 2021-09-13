@@ -1,5 +1,7 @@
 package version.one.util;
 
+import redis.clients.jedis.Jedis;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -45,4 +47,6 @@ public class TestUtilGP {
         }
         return result;
     }
+
+    public static Jedis jedis = new Jedis("127.0.0.1",6379);
 }

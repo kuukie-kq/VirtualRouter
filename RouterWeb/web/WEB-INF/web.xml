@@ -34,5 +34,37 @@
         <servlet-name>homePageServlet</servlet-name>
         <url-pattern>/headPage</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>hostServlet</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.HostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hostServlet</servlet-name>
+        <url-pattern>/hostMessage</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>hostPageServlet</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.HostPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hostPageServlet</servlet-name>
+        <url-pattern>/hostPage</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>routerServlet</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.RouterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>routerServlet</servlet-name>
+        <url-pattern>/routerMessage</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>routerPageServlet</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.RouterPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>routerPageServlet</servlet-name>
+        <url-pattern>/routerPage</url-pattern>
+    </servlet-mapping>
 
 </web-app>

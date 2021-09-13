@@ -15,7 +15,7 @@ public class RouterService {
     }
 
     public RouterMessage getMessageByLimit(int page) {
-        List<Router> routers = RouterUtils.routerDao.lookupRouterGetRoutersByLimit(page-1);
-        return new RouterMessage(0,5,page,0,routers);
+        List<Router> routers = RouterUtils.routerDao.lookupRouterGetRoutersByLimit(page);
+        return new RouterMessage(0,5,page+1,0,routers);
     }
 }

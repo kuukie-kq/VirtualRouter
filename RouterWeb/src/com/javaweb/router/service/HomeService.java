@@ -18,7 +18,7 @@ public class HomeService {
     }
 
     public HeadMessage getMessageByLimit(int page) {
-        List<HostRelationship> hostRelationships = RouterWebUtils.hostRelationshipDao.lookupHostShipGetHostShipsByLimit(page-1);
-        return  new HeadMessage(0,0,page,0,hostRelationships);
+        List<HostRelationship> hostRelationships = RouterWebUtils.hostRelationshipDao.lookupHostShipGetHostShipsByLimit(page);
+        return  new HeadMessage(0,0,page+1,0,hostRelationships);
     }
 }

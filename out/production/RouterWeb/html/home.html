@@ -231,7 +231,7 @@
                 $.ajax({
                     type: "post",
                     url: "../headPage",
-                    data: {"page": page}
+                    data: {"page": pageNumber}
                 }).done(function(datas){
                     $.each(JSON.parse(datas),function(i,data){
                         if(pageNumber == data.pageNumber) {

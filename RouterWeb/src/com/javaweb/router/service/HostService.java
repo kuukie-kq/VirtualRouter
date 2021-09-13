@@ -18,8 +18,8 @@ public class HostService {
     }
 
     public HostMessage getMessageByLimit(int page) {
-        List<Host> hosts = RouterUtils.hostDao.lookupHostGetHostsByLimit(page-1);
+        List<Host> hosts = RouterUtils.hostDao.lookupHostGetHostsByLimit(page);
         List<HostRelationship> relationships = RouterWebUtils.hostRelationshipDao.lookupHostShipGetHostShips();
-        return new HostMessage(0,5,page,0,hosts,relationships);
+        return new HostMessage(0,5,page+1,0,hosts,relationships);
     }
 }
