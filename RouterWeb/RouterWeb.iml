@@ -26,5 +26,6 @@
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="module" module-name="VirtualRouter" />
     <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-all:4.1.42.Final" level="project" />
   </component>
 </module>

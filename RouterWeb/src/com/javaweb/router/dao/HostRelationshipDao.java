@@ -75,4 +75,24 @@ public class HostRelationshipDao {
             return null;
         }
     }
+
+    public HostRelationship lookupHostShipGetHostShipById(int id) {
+        HostRelationship hostRelationship = new HostRelationship();
+        String sql = "select * from db_host_relationship where hostId=" + id;
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlSelect(sql);
+            ResultSet rs = MysqlConnectUtils.getRs();
+            for(;rs.next();) {
+                hostRelationship.setHostShipId(rs.getInt(1));
+                hostRelationship.setHostId(rs.getInt(2));
+                hostRelationship.setRouterId(rs.getInt(3));
+            }
+            MysqlConnectUtils.mysqlClose();
+            return hostRelationship;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

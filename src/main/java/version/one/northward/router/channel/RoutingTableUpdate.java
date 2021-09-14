@@ -7,6 +7,7 @@ import io.netty.util.AttributeKey;
 import version.one.bean.Router;
 import version.one.bean.RouterTable;
 import version.one.util.RouterUtils;
+import version.one.util.TestUtilGP;
 
 public class RoutingTableUpdate extends ChannelInboundHandlerAdapter {
     @Override
@@ -24,6 +25,7 @@ public class RoutingTableUpdate extends ChannelInboundHandlerAdapter {
                 Attribute<Object> attribute = ctx.channel().attr(attributeKey);
                 Object attr = attribute.get();
                 //System.out.println(Integer.parseInt(attr.toString()));
+                TestUtilGP.jedis.rpush(RouterUtils.routerDao.lookupRouterById(Integer.parseInt(attr.toString())).getRouterName(),virtualBody);
 
                 for(String routingTable:virtualBody.split("<>")) {
                     if(routingTable.split("-").length == 3) {

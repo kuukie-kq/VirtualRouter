@@ -8,6 +8,7 @@ import version.one.bean.Host;
 import version.one.bean.Router;
 import version.one.bean.RouterTable;
 import version.one.util.RouterUtils;
+import version.one.util.TestUtilGP;
 
 public class LookingForNext extends ChannelInboundHandlerAdapter {
     @Override
@@ -28,6 +29,7 @@ public class LookingForNext extends ChannelInboundHandlerAdapter {
                     Attribute<Object> attribute = ctx.channel().attr(attributeKey);
                     Object attr = attribute.get();
                     //System.out.println(Integer.parseInt(attr.toString()));
+                    TestUtilGP.jedis.rpush(RouterUtils.routerDao.lookupRouterById(Integer.parseInt(attr.toString())).getRouterName(),virtualBody);
 
                     RouterTable routerTable = RouterUtils.routerTableDao.lookupRouterTableByIdAndName(Integer.parseInt(attr.toString()),virtualFT[1]);
                     if(routerTable.getNextAddressName() == null) {

@@ -66,5 +66,21 @@
         <servlet-name>routerPageServlet</servlet-name>
         <url-pattern>/routerPage</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>startRouter</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.StartVirtualRouterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>startRouter</servlet-name>
+        <url-pattern>/startAll</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RouterMessage</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.StdoutVirtualRouterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RouterMessage</servlet-name>
+        <url-pattern>/router</url-pattern>
+    </servlet-mapping>
 
 </web-app>

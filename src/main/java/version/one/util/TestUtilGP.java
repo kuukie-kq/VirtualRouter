@@ -49,4 +49,8 @@ public class TestUtilGP {
     }
 
     public static Jedis jedis = new Jedis("127.0.0.1",6379);
+
+    public static List<String> getRedis(String key) {
+        return jedis.lrange(key,0,-1);
+    }
 }

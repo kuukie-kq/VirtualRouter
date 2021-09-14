@@ -95,5 +95,117 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+        <script type="text/javascript">
+            $.ajax({
+                type: "post",
+                url: "../routerMessage"
+            }).done(function(datas){
+                $.each(JSON.parse(datas),function (i,dataObject) {
+                    $("#pageCountNumber").text(Math.ceil(dataObject.countNumber/$("#countPageNumber").text()));
+                    $("#pageNumber").text(dataObject.pageNumber);
+                    $("#countNumber").text(dataObject.countNumber);
+
+                    var tbodyOp = $("#homeTable tbody").empty();
+                    $.each(dataObject.routers,function (j,data) {
+                        var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.routerId +
+                            "</td><td class='koko-td-tr koko-td-td'>" + data.routerName +
+                            "</td><td class='koko-td-tr koko-td-td'>" + data.routerAddress + "</td><td class='koko-td-tr koko-td-td'></td></tr>";
+                        tbodyOp.append(tbodyEd);
+                    });
+                });
+            }).fail(function(){
+                console.log("连接失败");
+            });
+
+            $("#front").click(function (){
+                var pageNumber = $("#pageNumber").text();
+                if(pageNumber <= 1) {
+                    console.log("page:" + pageNumber + " It is not have front");
+                } else {
+                    $.ajax({
+                        type: "post",
+                        url: "../routerPage",
+                        data: {"page": pageNumber-1}
+                    }).done(function(datas){
+                        $.each(JSON.parse(datas),function(i,data){
+                            if(pageNumber == data.pageNumber+1) {
+                                $("#pageNumber").text(data.pageNumber);
+                            }
+
+                            var tbodyOp = $("#homeTable tbody").empty();
+                            $.each(dataObject.routers,function (j,data) {
+                                var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.routerId +
+                                    "</td><td class='koko-td-tr koko-td-td'>" + data.routerName +
+                                    "</td><td class='koko-td-tr koko-td-td'>" + data.routerAddress + "</td><td class='koko-td-tr koko-td-td'></td></tr>";
+                                tbodyOp.append(tbodyEd);
+                            });
+                        });
+                    }).fail(function(){
+                        console.log("连接失败");
+                    });
+                }
+            });
+
+            $("#next").click(function(){
+                var pageNumber = $("#pageNumber").text();
+                var pageCountNumber = $("#pageCountNumber").text();
+                if(pageNumber >= pageCountNumber) {
+                    console.log("page:" + pageNumber + " It is not have next");
+                } else {
+                    $.ajax({
+                        type: "post",
+                        url: "../routerPage",
+                        data: {"page": pageNumber+1}
+                    }).done(function(datas){
+                        $.each(JSON.parse(datas),function(i,data){
+                            if(pageNumber == data.pageNumber-1) {
+                                $("#pageNumber").text(data.pageNumber);
+                            }
+
+                            var tbodyOp = $("#homeTable tbody").empty();
+                            $.each(dataObject.routers,function (j,data) {
+                                var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.routerId +
+                                    "</td><td class='koko-td-tr koko-td-td'>" + data.routerName +
+                                    "</td><td class='koko-td-tr koko-td-td'>" + data.routerAddress + "</td><td class='koko-td-tr koko-td-td'></td></tr>";
+                                tbodyOp.append(tbodyEd);
+                            });
+                        });
+                    }).fail(function(){
+                        console.log("连接失败");
+                    });
+                }
+            });
+
+            $("#skip").click(function(){
+                var pageNumber = $("#pageNumber").text();
+                var pageCountNumber = $("#pageCountNumber").text();
+                if(pageNumber <= 0 && pageNumber >= pageCountNumber) {
+                    console.log("page:" + pageNumber + " It is not have the page");
+                } else {
+                    $.ajax({
+                        type: "post",
+                        url: "../routerPage",
+                        data: {"page": pageNumber}
+                    }).done(function(datas){
+                        $.each(JSON.parse(datas),function(i,data){
+                            if(pageNumber == data.pageNumber) {
+                                $("#pageNumber").text(data.pageNumber);
+                            }
+
+                            var tbodyOp = $("#homeTable tbody").empty();
+                            $.each(dataObject.routers,function (j,data) {
+                                var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.routerId +
+                                    "</td><td class='koko-td-tr koko-td-td'>" + data.routerName +
+                                    "</td><td class='koko-td-tr koko-td-td'>" + data.routerAddress + "</td><td class='koko-td-tr koko-td-td'></td></tr>";
+                                tbodyOp.append(tbodyEd);
+                            });
+                        });
+                    }).fail(function(){
+                        console.log("连接失败");
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
