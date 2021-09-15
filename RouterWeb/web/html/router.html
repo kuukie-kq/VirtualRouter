@@ -30,6 +30,9 @@
                 height: 90%;
                 background: #CFFFF0;
             }
+            .koko-home-form input{
+                width: 50px;
+            }
         </style>
     </head>
     <body>
@@ -37,7 +40,12 @@
             <div class="koko-home-div">
                 <div class="koko-home-head">虚拟网络环境:路由器</div>
                 <div class="koko-home-body">
-                    <input /><br /><br />
+                    <form class="koko-home-form">
+                        id<input type="text" id="routerId">
+                        路由器名<input type="text" id="routerName">
+                        路由器地址<input type="text" id="routerAddress">
+                        <input type="button" id="insert" value="添加">
+                    </form>
                     <table id="routerTable">
                         <thead>
                         <tr>

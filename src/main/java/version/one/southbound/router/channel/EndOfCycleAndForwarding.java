@@ -29,7 +29,6 @@ public class EndOfCycleAndForwarding extends ChannelInboundHandlerAdapter {
 
                 if(port.length == 2) {
                     String response = TestUtilGP.send(port[1],port[0],requestBody);
-                    System.err.println(response);
 
                     AttributeKey<Object> attributeKey = AttributeKey.valueOf("response");
 
@@ -38,8 +37,6 @@ public class EndOfCycleAndForwarding extends ChannelInboundHandlerAdapter {
                     bootstrap.attr(attributeKey,response);
                     bootstrap.channel(NioSocketChannel.class);
                     bootstrap.handler(new ForwardingHandler());
-                    bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
-                    bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR,new FixedRecvByteBufAllocator(65535));
 
                     bootstrap.connect("127.0.0.1",55031).addListener(future -> {
                         if(future.isSuccess()) {

@@ -2,6 +2,7 @@ package com.javaweb.router.util;
 
 import com.javaweb.router.dao.HostRelationshipDao;
 import com.javaweb.router.dao.RouterRelationshipDao;
+import com.javaweb.router.server.RequestAndResponse;
 import com.javaweb.router.server.StartNorthward;
 import com.javaweb.router.server.StartSouthbound;
 import com.javaweb.router.server.Stdout;
@@ -22,4 +23,5 @@ public class RouterWebUtils {
     public static StartSouthbound southbound = new StartSouthbound();
     public static StartNorthward northward = new StartNorthward();
     public static Stdout stdout = new Stdout();
+    public static RequestAndResponse rar = new RequestAndResponse();
 }

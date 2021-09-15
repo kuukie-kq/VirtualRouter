@@ -82,5 +82,13 @@
         <servlet-name>RouterMessage</servlet-name>
         <url-pattern>/router</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>SendServlet</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.SendServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendServlet</servlet-name>
+        <url-pattern>/sendRAR</url-pattern>
+    </servlet-mapping>
 
 </web-app>

@@ -32,15 +32,15 @@
             }
             .koko-home-body-head {
                 min-width: 512px;
-                min-height: 54px;
+                min-height: 108px;
                 width: 100%;
-                height: 12.5%;
+                height: 25%;
             }
             .koko-home-body-body {
                 min-width: 512px;
-                min-height: 378px;
+                min-height: 324px;
                 width: 100%;
-                height: 82.5%;
+                height: 75%;
             }
             .koko-home-body-head button {
                 margin: 0 20px;
@@ -48,6 +48,18 @@
                 color: #CFFFF0;
                 background-color: #0A4979;
                 border-radius: 10%;
+            }
+            .koko-home-board {
+                min-width: 512px;
+                width: 100%;
+            }
+            .koko-home-message {
+                min-width: 496px;
+                width: 96.875%;
+                float: right;
+            }
+            .koko-home-form input{
+
             }
         </style>
     </head>
@@ -57,6 +69,11 @@
                 <div class="koko-home-head">虚拟环境详情</div>
                 <div class="koko-home-body">
                     <div class="koko-home-body-head">
+                        <form class="koko-home-form">
+                            <input type="text" id="head">
+                            <input type="text" id="body">
+                            <input type="button" id="submit" value="send">
+                        </form>
                         <button id="start">全部开启</button>
                         <button id="close">全部关闭</button>
                         <span>当前状态<span id="state">closed</span></span><br>
@@ -70,6 +87,20 @@
         </div>
         <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
         <script type="text/javascript">
+            $("#submit").click(function(){
+                var head = $("#head").val();
+                var body = $("#body").val();
+                $.ajax({
+                    type: "post",
+                    url: "../sendRAR",
+                    data: {"head":head,"body":body}
+                }).done(function(datas){
+                    alert(datas);
+                }).fail(function(){
+                    console.log("连接失败");
+                });
+            });
+
             $("#start").click(function(){
                 if($("#state").text() == "running") {
                     console.log("连接失败");
@@ -109,7 +140,6 @@
             });
 
             var myRouter = function(buttonId){
-                alert(buttonId);
                 $.ajax({
                     type: "post",
                     url: "../router",
@@ -117,7 +147,7 @@
                 }).done(function(datas){
                     var message = $("#message").empty();
                     $.each(JSON.parse(datas),function(i,data){
-                        message.append("<div class=''>"+ data.string + "</div>");
+                        message.append("<div class='koko-home-board'>" + data.id + "<div class='koko-home-message'>"+ data.string + "</div></div><div class='koko-clear-float'></div>");
                     });
                 }).fail(function(){
                     console.log("连接失败");

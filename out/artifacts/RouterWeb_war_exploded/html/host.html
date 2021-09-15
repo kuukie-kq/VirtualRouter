@@ -30,6 +30,9 @@
                 height: 90%;
                 background: #CFFFF0;
             }
+            .koko-home-form input{
+                width: 50px;
+            }
         </style>
     </head>
     <body>
@@ -37,11 +40,12 @@
             <div class="koko-home-div">
                 <div class="koko-home-head">虚拟网络环境:主机</div>
                 <div class="koko-home-body">
-                    <form>
-                        <input type="text">
-                        <input type="text">
-                        <input type="text">
-                        <input type="text">
+                    <form class="koko-home-form">
+                        id<input type="text" id="hostId">
+                        主机名<input type="text" id="hostName">
+                        主机地址<input type="text" id="hostAddress">
+                        关联路由器id<input type="text" id="hostShip">
+                        <input type="button" value="添加" id="insert">
                     </form>
                     <table id="hostTable">
                         <thead>

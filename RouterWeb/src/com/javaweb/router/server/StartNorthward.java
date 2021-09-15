@@ -7,13 +7,16 @@ import version.one.util.RouterUtils;
 public class StartNorthward {
     public void startAll() {
         for(Router router : RouterUtils.routerDao.lookupRouterGetRouters()) {
-            new Thread(new Runnable() {
+            Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     NettyVirtualRouter nettyVirtualRouter = new NettyVirtualRouter(router.getRouterId());
                     nettyVirtualRouter.run();
                 }
-            }).start();
+            });
+
+            thread.start();
+            
         }
     }
 }
