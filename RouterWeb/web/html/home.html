@@ -161,7 +161,7 @@
             });
 
             $("#front").click(function (){
-                var pageNumber = $("#pageNumber").text();
+                var pageNumber = Number($("#pageNumber").text());
                 if(pageNumber <= 1) {
                     console.log("page:" + pageNumber + " It is not have front");
                 } else {
@@ -191,8 +191,8 @@
             });
 
             $("#next").click(function(){
-                var pageNumber = $("#pageNumber").text();
-                var pageCountNumber = $("#pageCountNumber").text();
+                var pageNumber = Number($("#pageNumber").text());
+                var pageCountNumber = Number($("#pageCountNumber").text());
                 if(pageNumber >= pageCountNumber) {
                     console.log("page:" + pageNumber + " It is not have next");
                 } else {
@@ -222,8 +222,8 @@
             });
 
             $("#skip").click(function(){
-                var pageNumber = $("#pageNumber").text();
-                var pageCountNumber = $("#pageCountNumber").text();
+                var pageNumber = Number($("#pageNumber").text());
+                var pageCountNumber = Number($("#pageCountNumber").text());
                 if(pageNumber <= 0 && pageNumber >= pageCountNumber) {
                     console.log("page:" + pageNumber + " It is not have the page");
                 } else {

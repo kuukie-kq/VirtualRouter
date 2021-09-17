@@ -114,4 +114,17 @@ public class RouterDao{
             return -1;
         }
     }
+
+    public boolean lookRouter(Router router) {
+        String sql = "insert into db_router values(" + router.getRouterId() + ",'" + router.getRouterName() + "','" + router.getRouterAddress() + "')";
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlUpdate(sql);
+            MysqlConnectUtils.mysqlClose();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

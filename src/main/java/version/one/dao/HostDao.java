@@ -94,4 +94,17 @@ public class HostDao {
             return -1;
         }
     }
+
+    public boolean lookHost(Host host) {
+        String sql = "insert into db_host values(" + host.getHostId() + ",'" + host.getHostName() + "','" + host.getHostAddress() + "')";
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlUpdate(sql);
+            MysqlConnectUtils.mysqlClose();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

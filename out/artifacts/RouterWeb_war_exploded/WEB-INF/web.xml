@@ -90,5 +90,21 @@
         <servlet-name>SendServlet</servlet-name>
         <url-pattern>/sendRAR</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddHost</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.HostAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddHost</servlet-name>
+        <url-pattern>/addHost</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddRouter</servlet-name>
+        <servlet-class>com.javaweb.router.servlet.RouterAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddRouter</servlet-name>
+        <url-pattern>/addRouter</url-pattern>
+    </servlet-mapping>
 
 </web-app>

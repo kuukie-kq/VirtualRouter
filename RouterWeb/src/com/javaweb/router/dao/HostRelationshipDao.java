@@ -95,4 +95,17 @@ public class HostRelationshipDao {
             return null;
         }
     }
+
+    public boolean lookHostShipByRouterAndHostId(int hostId,int routerId) {
+        String sql = "insert into db_host_relationship values(" + (lookupHostShipGetHostShipsNumber()+1) + "," + hostId + "," + routerId + ")";
+        try {
+            MysqlConnectUtils.mysqlInit();
+            MysqlConnectUtils.mysqlUpdate(sql);
+            MysqlConnectUtils.mysqlClose();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

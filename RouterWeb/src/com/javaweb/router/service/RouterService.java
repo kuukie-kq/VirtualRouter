@@ -18,4 +18,12 @@ public class RouterService {
         List<Router> routers = RouterUtils.routerDao.lookupRouterGetRoutersByLimit(page);
         return new RouterMessage(0,5,page+1,0,routers);
     }
+
+    public boolean setNewRouter(int routerId,String routerName,String routerAddress) {
+        Router router = new Router();
+        router.setRouterId(routerId);
+        router.setRouterName(routerName);
+        router.setRouterAddress(routerAddress);
+        return RouterUtils.routerDao.lookRouter(router);
+    }
 }

@@ -5,6 +5,7 @@ import com.javaweb.router.bean.RouterRelationship;
 import com.javaweb.router.bean.RouterShip;
 import com.javaweb.router.util.RouterWebUtils;
 import version.one.bean.Router;
+import version.one.bean.RouterTable;
 import version.one.util.RouterUtils;
 
 import java.util.ArrayList;
@@ -21,5 +22,11 @@ public class RouterRelationshipService {
             ships.add(ship);
         }
         return new RouterShip(routers,ships);
+    }
+
+    public RouterShip autoFoundRouterShip() {
+        for(RouterTable routerTable:RouterUtils.routerTableDao.lookupRouterTableGetRouterTables()) {
+
+        }
     }
 }
