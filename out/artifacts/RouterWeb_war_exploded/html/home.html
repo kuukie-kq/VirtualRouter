@@ -144,7 +144,7 @@
                     $("#hostNumber").text(dataObject.hostNumber);
                     $("#routerNumber").text(dataObject.routerNumber);
                     $("#pageCountNumber").text(Math.ceil(dataObject.countNumber/$("#countPageNumber").text()));
-                    $("#pageNumber").text(dataObject.pageNumber);
+                    $("#pageNumber").val(dataObject.pageNumber);
                     $("#countNumber").text(dataObject.countNumber);
 
                     var tbodyOp = $("#homeTable tbody").empty();
@@ -161,7 +161,7 @@
             });
 
             $("#front").click(function (){
-                var pageNumber = Number($("#pageNumber").text());
+                var pageNumber = Number($("#pageNumber").val());
                 if(pageNumber <= 1) {
                     console.log("page:" + pageNumber + " It is not have front");
                 } else {
@@ -172,7 +172,7 @@
                     }).done(function(datas){
                         $.each(JSON.parse(datas),function(i,data){
                             if(pageNumber == data.pageNumber+1) {
-                                $("#pageNumber").text(data.pageNumber);
+                                $("#pageNumber").val(data.pageNumber);
                             }
 
                             var tbodyOp = $("#homeTable tbody").empty();
@@ -191,7 +191,7 @@
             });
 
             $("#next").click(function(){
-                var pageNumber = Number($("#pageNumber").text());
+                var pageNumber = Number($("#pageNumber").val());
                 var pageCountNumber = Number($("#pageCountNumber").text());
                 if(pageNumber >= pageCountNumber) {
                     console.log("page:" + pageNumber + " It is not have next");
@@ -203,7 +203,7 @@
                     }).done(function(datas){
                         $.each(JSON.parse(datas),function(i,data){
                             if(pageNumber == data.pageNumber-1) {
-                                $("#pageNumber").text(data.pageNumber);
+                                $("#pageNumber").val(data.pageNumber);
                             }
 
                             var tbodyOp = $("#homeTable tbody").empty();
@@ -222,7 +222,7 @@
             });
 
             $("#skip").click(function(){
-                var pageNumber = Number($("#pageNumber").text());
+                var pageNumber = Number($("#pageNumber").val());
                 var pageCountNumber = Number($("#pageCountNumber").text());
                 if(pageNumber <= 0 && pageNumber >= pageCountNumber) {
                     console.log("page:" + pageNumber + " It is not have the page");
@@ -234,7 +234,7 @@
                     }).done(function(datas){
                         $.each(JSON.parse(datas),function(i,data){
                             if(pageNumber == data.pageNumber) {
-                                $("#pageNumber").text(data.pageNumber);
+                                $("#pageNumber").val(data.pageNumber);
                             }
 
                             var tbodyOp = $("#homeTable tbody").empty();

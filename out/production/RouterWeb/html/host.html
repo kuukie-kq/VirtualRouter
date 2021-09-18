@@ -32,11 +32,13 @@
             }
             .koko-home-form {
                 min-width: 448px;
+                min-height: 108px;
                 width: 87.5%;
+                height: 25%;
                 text-align: center;
             }
             .koko-home-form input{
-                width: 50px;
+                width: 80px;
             }
         </style>
     </head>
@@ -45,11 +47,11 @@
             <div class="koko-home-div">
                 <div class="koko-home-head">虚拟网络环境:主机</div>
                 <div class="koko-home-body">
-                    <form class="koko-home-form">
-                        id<input type="text" id="hostId">
-                        主机名<input type="text" id="hostName">
-                        主机地址<input type="text" id="hostAddress">
-                        关联路由器id<input type="text" id="hostShip">
+                    <form class="koko-home-form"><br><br>
+                        <span>id</span><input type="text" id="hostId">
+                        <span>主机名</span><input type="text" id="hostName">
+                        <span>主机地址</span><input type="text" id="hostAddress">
+                        <span>关联路由器id</span><input type="text" id="hostShip">
                         <input type="button" value="添加" id="insert">
                     </form>
                     <table id="hostTable">
@@ -122,10 +124,10 @@
             }).done(function(datas){
                 $.each(JSON.parse(datas),function (i,dataObject) {
                     $("#pageCountNumber").text(Math.ceil(dataObject.countNumber/$("#countPageNumber").text()));
-                    $("#pageNumber").text(dataObject.pageNumber);
+                    $("#pageNumber").val(dataObject.pageNumber);
                     $("#countNumber").text(dataObject.countNumber);
 
-                    var tbodyOp = $("#homeTable tbody").empty();
+                    var tbodyOp = $("#hostTable tbody").empty();
                     $.each(dataObject.hosts,function (j,data) {
                         var hostRelationship = null;
                         $.each(dataObject.relationships,function(k,ship){
@@ -137,7 +139,7 @@
                         var tbodyEd = "<tr><td class='koko-td-tr koko-td-td'>" + data.hostId +
                             "</td><td class='koko-td-tr koko-td-td'>" + data.hostName +
                             "</td><td class='koko-td-tr koko-td-td'>" + data.hostAddress +
-                            "</td><td class='koko-td-tr koko-td-td'>" + hostRelationship + "</td></tr>";
+                            "</td><td class='koko-td-tr koko-td-td'>" + hostRelationship + "</td><td class='koko-td-tr koko-td-td'></td></tr>";
                         tbodyOp.append(tbodyEd);
                     });
                 });
@@ -146,7 +148,7 @@
             });
 
             $("#front").click(function (){
-                var pageNumber = Number($("#pageNumber").text());
+                var pageNumber = Number($("#pageNumber").val());
                 if(pageNumber <= 1) {
                     console.log("page:" + pageNumber + " It is not have front");
                 } else {
@@ -155,12 +157,12 @@
                         url: "../hostPage",
                         data: {"page": pageNumber-1}
                     }).done(function(datas){
-                        $.each(JSON.parse(datas),function(i,data){
-                            if(pageNumber == data.pageNumber+1) {
-                                $("#pageNumber").text(data.pageNumber);
+                        $.each(JSON.parse(datas),function(i,dataObject){
+                            if(pageNumber == dataObject.pageNumber+1) {
+                                $("#pageNumber").val(dataObject.pageNumber);
                             }
 
-                            var tbodyOp = $("#homeTable tbody").empty();
+                            var tbodyOp = $("#hostTable tbody").empty();
                             $.each(dataObject.hosts,function (j,data) {
                                 var hostRelationship = null;
                                 $.each(dataObject.relationships,function(k,ship){
@@ -183,7 +185,7 @@
             });
 
             $("#next").click(function(){
-                var pageNumber = Number($("#pageNumber").text());
+                var pageNumber = Number($("#pageNumber").val());
                 var pageCountNumber = Number($("#pageCountNumber").text());
                 if(pageNumber >= pageCountNumber) {
                     console.log("page:" + pageNumber + " It is not have next");
@@ -193,12 +195,12 @@
                         url: "../hostPage",
                         data: {"page": pageNumber+1}
                     }).done(function(datas){
-                        $.each(JSON.parse(datas),function(i,data){
-                            if(pageNumber == data.pageNumber-1) {
-                                $("#pageNumber").text(data.pageNumber);
+                        $.each(JSON.parse(datas),function(i,dataObject){
+                            if(pageNumber == dataObject.pageNumber-1) {
+                                $("#pageNumber").val(dataObject.pageNumber);
                             }
 
-                            var tbodyOp = $("#homeTable tbody").empty();
+                            var tbodyOp = $("#hostTable tbody").empty();
                             $.each(dataObject.hosts,function (j,data) {
                                 var hostRelationship = null;
                                 $.each(dataObject.relationships,function(k,ship){
@@ -221,7 +223,7 @@
             });
 
             $("#skip").click(function(){
-                var pageNumber = Number($("#pageNumber").text());
+                var pageNumber = Number($("#pageNumber").val());
                 var pageCountNumber = Number($("#pageCountNumber").text());
                 if(pageNumber <= 0 && pageNumber >= pageCountNumber) {
                     console.log("page:" + pageNumber + " It is not have the page");
@@ -231,12 +233,12 @@
                         url: "../hostPage",
                         data: {"page": pageNumber}
                     }).done(function(datas){
-                        $.each(JSON.parse(datas),function(i,data){
-                            if(pageNumber == data.pageNumber) {
-                                $("#pageNumber").text(data.pageNumber);
+                        $.each(JSON.parse(datas),function(i,dataObject){
+                            if(pageNumber == dataObject.pageNumber) {
+                                $("#pageNumber").val(dataObject.pageNumber);
                             }
 
-                            var tbodyOp = $("#homeTable tbody").empty();
+                            var tbodyOp = $("#hostTable tbody").empty();
                             $.each(dataObject.hosts,function (j,data) {
                                 var hostRelationship = null;
                                 $.each(dataObject.relationships,function(k,ship){
@@ -269,9 +271,9 @@
                     data: {"hostId":hostId,"hostName":hostName,"hostAddress":hostAddress,"hostShip":hostShip}
                 }).done(function(datas){
                     $.each(JSON.parse(datas),function(i,data){
-                        if(data=="true") {
+                        if(data) {
                             alert("success");
-                            window.location.href = "router.html";
+                            window.location.href = "host.html";
                         }
                     });
                 }).fail(function(){

@@ -8,8 +8,7 @@ import version.one.bean.Router;
 import version.one.bean.RouterTable;
 import version.one.util.RouterUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class RouterRelationshipService {
     public RouterShip getRouterShip() {
@@ -25,8 +24,41 @@ public class RouterRelationshipService {
     }
 
     public RouterShip autoFoundRouterShip() {
-        for(RouterTable routerTable:RouterUtils.routerTableDao.lookupRouterTableGetRouterTables()) {
+        List<Relationship> ships = RouterWebUtils.routerRelationshipService.getRouterShip().getShips();
+        for(Router router:RouterUtils.routerDao.lookupRouterGetRouters()) {
+            for(RouterTable routerTable:RouterUtils.routerTableDao.lookupRouterTableById(router.getRouterId())) {
+                if(routerTable.getReachableDistance() > 0) {
 
+                    ListIterator<Relationship> iterator = ships.listIterator();
+
+                    for(;iterator.hasNext();) {
+                        Relationship ship = iterator.next();
+                        if(ship.getFromNode().equals(router.getRouterName())) {
+                            if(ship.getToNode().equals(routerTable.getNextAddressName())) {
+                                break;
+                            } else {
+                                Relationship relationship = new Relationship();
+                                relationship.setFromNode(router.getRouterName());
+                                relationship.setToNode(routerTable.getNextAddressName());
+                                iterator.add(relationship);
+                            }
+                        } else if (ship.getToNode().equals(router.getRouterName())) {
+                            if(ship.getFromNode().equals(routerTable.getNextAddressName())) {
+                                break;
+                            } else {
+                                Relationship relationship = new Relationship();
+                                relationship.setFromNode(router.getRouterName());
+                                relationship.setToNode(routerTable.getNextAddressName());
+                                iterator.add(relationship);
+                            }
+                        }
+                    }
+
+
+                }
+            }
         }
+
+        return new RouterShip(RouterUtils.routerDao.lookupRouterGetRouters(),ships);
     }
 }

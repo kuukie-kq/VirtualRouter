@@ -21,7 +21,7 @@ public class RouterRelationshipServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RouterShip routerShip = RouterWebUtils.routerRelationshipService.getRouterShip();
+        RouterShip routerShip = RouterWebUtils.routerRelationshipService.autoFoundRouterShip();
 
         JSONArray jsonArray = JSONArray.fromObject(routerShip);
         response.setContentType("text/html;charset=utf-8");
