@@ -43,7 +43,7 @@ public class RequestAndResponse {
 
                         byte[] bytes = ("POST / HTTP/1.1" + RouterUtils.SEQUENCE + "VirtualRouter:" + head +
                                 RouterUtils.SEQUENCE + "accept:*/*" + RouterUtils.SEQUENCE + "connection:Keep-Alive" + RouterUtils.SEQUENCE +"user-agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)"
-                                + RouterUtils.SEQUENCE + RouterUtils.SEQUENCE + body).getBytes(RouterUtils.charset);
+                                + RouterUtils.SEQUENCE + RouterUtils.SEQUENCE + body + RouterUtils.SEQUENCE).getBytes(RouterUtils.charset);
 
                         byteBuf.writeBytes(bytes);
                         return byteBuf;

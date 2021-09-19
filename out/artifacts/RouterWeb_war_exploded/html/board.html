@@ -60,11 +60,13 @@
             }
             .koko-home-form {
                 min-width: 448px;
+                min-height: 27px;
                 width: 87.5%;
+                height: 25%;
                 text-align: center;
             }
             .koko-home-form input{
-
+                width: 80px;
             }
         </style>
     </head>
@@ -75,10 +77,10 @@
                 <div class="koko-home-body">
                     <div class="koko-home-body-head">
                         <form class="koko-home-form">
-                            <input type="text" id="head">
-                            <input type="text" id="body">
-                            <input type="button" id="submit" value="send">
-                        </form><br /><br />
+                            <span>发送源->目标</span><input type="text" id="head">
+                            <span>发送内容</span><input type="text" id="body">
+                            <input type="button" id="submit" value="发送">
+                        </form>
                         <button id="start">全部开启</button>
                         <button id="close">全部关闭</button>
                         <span>当前状态<span id="state">closed</span></span><br>

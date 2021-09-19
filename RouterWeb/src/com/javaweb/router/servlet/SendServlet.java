@@ -23,7 +23,10 @@ public class SendServlet extends HttpServlet {
         if(head.split("->").length == 2) {
             RouterWebUtils.rar.send(head,body);
         } else {
-
+            JSONArray jsonArray = JSONArray.fromObject("error");
+            response.setContentType("text/html;charset=utf-8");
+            response.getWriter().println(jsonArray);
+            System.out.println(jsonArray);
         }
 
         JSONArray jsonArray = JSONArray.fromObject("ok");

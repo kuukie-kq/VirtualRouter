@@ -37,7 +37,7 @@ public class HostService {
             routerTable.setRouterId(routerId);
             routerTable.setReachableAddressName(hostName);
             routerTable.setReachableDistance(Integer.parseInt("0"));
-            routerTable.setNextAddressName(hostAddress);
+            routerTable.setNextAddressName(hostName);
             RouterUtils.routerTableDao.lookRouterTable(routerTable);
             return RouterWebUtils.hostRelationshipDao.lookHostShipByRouterAndHostId(hostId,routerId);
         } else {
