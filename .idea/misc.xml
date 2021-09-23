@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/SpringWeb" />
     <file type="web" url="file://$PROJECT_DIR$/VirtualWebRouter" />
   </component>
   <component name="MavenProjectsManager">
@@ -15,9 +16,6 @@
         <option value="$PROJECT_DIR$/VirtualWebRouter/pom.xml" />
       </set>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/RouterWeb/web/js/echarts.js" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
